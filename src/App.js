@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react'
+import axios from 'axios'
 
 function App() {
   const [imageUrl, setImageURL] = useState(null)
@@ -17,8 +18,22 @@ function App() {
       namee: imageFile.name
     }
     let formData = new FormData()
-    formData.append('imageFile',source)
-    console.log(formData, 'sourcesource')
+    formData.append('image',source)
+    
+    //  api call
+    axios({
+      method: "post",
+      url: "",   // enter url
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
 
 
   }
